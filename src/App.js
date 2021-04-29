@@ -8,6 +8,7 @@ import { NotesPage } from './pages/NotesPage'
 import { NotePage } from './pages/NotePage'
 import { inc, dec } from './actions'
 import './App.css'
+import { CreateNote } from './components/create-note/create-note'
 
 export default function App() {
   const [notes, setNotes] = useState([])
@@ -27,7 +28,6 @@ export default function App() {
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`,{method:'DELETE'})
     .then((response) => response.json())
     .then((resp) => {
-      console.log(console.log(resp,"365"))
       const filteredNotes = notes.filter((note) => note.id !== id);
       setNotes(filteredNotes);
     })
@@ -67,6 +67,9 @@ export default function App() {
 
             <Route path='/notes'>
               <NotesPage notes={notes} removeNote={deleteNote} />
+            </Route>
+            <Route path='/create-note'>
+              <CreateNote/>
             </Route>
 
             <Route path='/about'>

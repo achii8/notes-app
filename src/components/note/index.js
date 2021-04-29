@@ -8,6 +8,7 @@ export function Note({ note, handleClick }) {
     history.push(`./note/${id}`)
   }
   return (
+    <div>
     <li className='list-group-item d-flex justify-content-between'>
       <div onClick={() => getNote(note.id)}>{note.title}</div>
       <div>
@@ -19,5 +20,6 @@ export function Note({ note, handleClick }) {
         </button>
       </div>
     </li>
+    </div>
   )
 }
