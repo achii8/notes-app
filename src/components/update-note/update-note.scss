@@ -1,0 +1,16 @@
+#update-note{
+    max-width: 960px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    .field{
+        margin-left: 10px;
+        width: 450px;
+        height: auto;
+        margin-top: 40px;
+        .field-style{
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import './create-note.scss';
+import './update-note.scss';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
 
 
-
-export function CreateNote() {
+export function UpdateNote({ id }) {
+  const [note, setNote] = useState({title:"", body:""});
   let history = useHistory();
 
-  const [note, setNote] = useState({title:"", body:""});
-
-  
-  const createNote = () => {
-    fetch(`https://jsonplaceholder.typicode.com/posts`,{method:'POST', body: note})
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+      .then((response) => response.json())
+      .then((data) => setNote(data))
+  }, [])
+  const updateNote = () => {
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`,{method:'PATCH', body: note})
     .then((response) => response.json())
     .then((resp) => {
       if(resp){
@@ -21,14 +23,16 @@ export function CreateNote() {
       }
       console.log("response");
     })
+    
   }
   return (
-    <div id="create-note">
+    <div id="update-note">
       <div className="field">
         <TextField
           label="სათაური"
           variant="outlined"
           className="field-style"
+          value={note.title}
           onChange={(e)=>{
             setNote({...note,title: e.target.value})
           }}
@@ -37,6 +41,7 @@ export function CreateNote() {
       <div className="field">
       <TextField
           label="აღწერა"
+          value= {note.body}
           variant="outlined"
           className="field-style"
           multiline={true}
@@ -52,10 +57,11 @@ export function CreateNote() {
           color="secondary" 
           className="field-style"
           onClick={()=>{
-            createNote(note);
+            console.log(note);
+            updateNote()
           }}
         >
-        შეცვლა
+        დამატება
       </Button>
       </div>
     </div>

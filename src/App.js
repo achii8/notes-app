@@ -9,6 +9,9 @@ import { NotePage } from './pages/NotePage'
 import { inc, dec } from './actions'
 import './App.css'
 import { CreateNote } from './components/create-note/create-note'
+import { UpdateNote } from './components/update-note/update-note'
+// import { CreateNote } from './components/create-note'
+// import { UpdateNote } from './components/update-note'
 
 export default function App() {
   const [notes, setNotes] = useState([])
@@ -19,7 +22,7 @@ export default function App() {
   console.log('state', state)
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts/`)
+    fetch(`https://jsonplaceholder.typicode.com/posts`)
       .then((response) => response.json())
       .then((data) => setNotes(data))
   }, [])
@@ -61,6 +64,10 @@ export default function App() {
             <Route
               path='/note/:id'
               render={(props) => <NotePage id={props.match.params.id} />}
+            />
+            <Route
+              path='/update-note/:id'
+              render={(props) => <UpdateNote id={props.match.params.id} />}
             />
 
             {/* <Route path='/notes' component={notes} /> */}
