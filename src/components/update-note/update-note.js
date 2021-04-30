@@ -61,7 +61,7 @@ export function UpdateNote({ id }) {
             updateNote()
           }}
         >
-        დამატება
+        რედაქტირება
       </Button>
       </div>
     </div>

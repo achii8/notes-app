@@ -55,7 +55,7 @@ export function CreateNote() {
             createNote(note);
           }}
         >
-        შეცვლა
+        დამატება
       </Button>
       </div>
     </div>
